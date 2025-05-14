@@ -36,11 +36,12 @@ impl Compact for TxTypeCustom {
                 COMPACT_EXTENDED_IDENTIFIER_FLAG => {
                     let extended_identifier = buf.get_u8();
                     match extended_identifier {
-                        TRANSFER_TX_TYPE_ID => Self::Custom,
-                        _ => panic!("Unsupported TxType identifier: {extended_identifier}"),
+                        _ => Self::Custom,
                     }
                 }
-                _ => panic!("Unknown identifier for TxType: {identifier}"),
+                _ =>  {
+                    Self::Custom
+                }
             },
             buf,
         )
